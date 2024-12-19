@@ -47,9 +47,8 @@ def recommend_songs(song_name, data):
   # First song will be the input song itself as the similarity will be highest.
   return data[['track_name', 'artist_name']][2:7]
 
-def recommend_songs_by_genre(genres, data):
+def recommend_new_user(genres, data):
   '''
-  При регистрации пользователю предлагается выбрать жанры, которые ему нравятся.
-  На основе этих жанров формируются первые рекомендации
+  Рекомендации для новых пользователей (на основе жанров)
   '''
   # TODO
