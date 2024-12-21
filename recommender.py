@@ -1,12 +1,16 @@
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.feature_extraction.text import CountVectorizer
  
 import warnings
 warnings.filterwarnings('ignore')
 
 
-def get_similarities(song_name, data, song_vectorizer):
+def get_similarities(song_name, data):
    
+  song_vectorizer = CountVectorizer()
+  song_vectorizer.fit(data['genre'])
+
   # Getting vector for the input song.
   text_array1 = song_vectorizer[0].transform(data[data['track_name']==song_name]['genre']).toarray()
   num_array1 = data[data['track_name']==song_name].select_dtypes(include=np.number).to_numpy()

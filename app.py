@@ -2,7 +2,6 @@ import PySimpleGUI as sg
 from tinydb import TinyDB, Query
 import recommender
 import pandas as pd
-from loguru import logger
 
 
 sg.theme('sandy beach')  # цветовая тема приложения
