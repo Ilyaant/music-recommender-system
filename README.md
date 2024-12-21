@@ -10,13 +10,16 @@
 ![image](https://github.com/user-attachments/assets/86ae143c-566c-4759-89e3-45ebdb92da41)
 
 Основное окно пользователя (рекомендации):
-![image](https://github.com/user-attachments/assets/0163d57c-4532-4c2a-84cc-c5973ee1c359)
+
+![image](https://github.com/user-attachments/assets/f69b46e8-3b6e-4831-be80-80463cdfc3a8)
 
 Основное окно пользователя (магазин):
-![image](https://github.com/user-attachments/assets/050766f8-b9fc-482f-887f-0f863828be36)
 
-Основное окно пользователя (магазин):
+![image](https://github.com/user-attachments/assets/cf392dac-bbd5-45d9-abb6-8f86ab8c11b6)
 
+Основное окно пользователя (библиотека):
+
+![image](https://github.com/user-attachments/assets/071b7eef-7969-4f8d-9b64-f3491a6985b5)
 
 ## Использованные технологии
 TODO
