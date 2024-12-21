@@ -70,21 +70,23 @@ def user_interface(user):
         [sg.Text('Ваши рекомендации:', key='-RECTEXT-')],
         [sg.Table([], headings=["Песня", "Автор", "Жанр"], key='-RECTABLE-', 
                   enable_events=True, expand_x=True)],
-        [sg.Text('Нажмите на песню, чтобы добавить ее себе')]
+        [sg.Text('Нажмите на песню, чтобы добавить ее себе')],
+        [sg.Button('Обновить мои рекомендации')]
     ]
     tab_layout2 = [
         [sg.Text('Нажмите на песню, чтобы добавить ее себе:')],
         [sg.Table(all_songs, headings=["Песня", "Автор", "Жанр"], key='-SHTABLE-', enable_events=True)]
     ]
     tab_layout3 = [
-        [sg.Table([], headings=["Песня", "Автор", "Жанр"], key='-MYTABLE-', expand_x=True)]
+        [sg.Table([], headings=["Песня", "Автор", "Жанр"], key='-MYTABLE-', expand_x=True)],
+        [sg.Button('Обновить мои песни')]
     ]
     layout = [
         [sg.Text(f'Добро пожаловать, {user['login']}!')],
         [sg.TabGroup([[sg.Tab("Рекомендации", tab_layout1), 
                        sg.Tab("Магазин", tab_layout2), 
                        sg.Tab("Моя музыка", tab_layout3)]])],
-        [sg.Push(), sg.Button('Обновить'), sg.Button('Выход')]
+        [sg.Push(), sg.Button('Выход')]
     ]
 
     window = sg.Window('Музыкальная рекомендательная система', layout)
@@ -106,10 +108,12 @@ def user_interface(user):
             database.update({'songs': user_songs_arr}, User.login == user['login'])
             sg.Popup('Песня успешно добавлена', title='Успешно')
 
-        if event == 'Обновить':
+        if event == 'Обновить мои песни':
             user_songs = [[song['track_name'], song['artist_name'], song['genre']] for song in user['songs']]
             window['-MYTABLE-'].update(user_songs)
 
+        if event == 'Обновить мои рекомендации':
+            user_songs = [[song['track_name'], song['artist_name'], song['genre']] for song in user['songs']]
             if user_songs == []:
                 recs_new = recommender.recommend_new_user(user['genres'], data)
                 window['-RECTEXT-'].update('Рекомендации для нового пользователя:')
@@ -117,7 +121,6 @@ def user_interface(user):
             else:
                 recs = recommender.recommend_songs(user_songs[-1][0], data)
                 window['-RECTABLE-'].update(recs)
-
 
     window.close()
 
