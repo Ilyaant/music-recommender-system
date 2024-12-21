@@ -28,8 +28,9 @@ def get_similarities(song_name, data, song_vectorizer):
   return sim
 
 
-def recommend_songs(song_name, data):
+def recommend_songs(song_name, songs_data):
   # Base case
+  data = songs_data.copy()
   if data[data['track_name'] == song_name].shape[0] == 0:
     print('Вы ввели неизвестное название песни.')
     print('Вот другие песни, которые вам могут понравиться:\n')
@@ -45,10 +46,12 @@ def recommend_songs(song_name, data):
                    inplace=True)
    
   # First song will be the input song itself as the similarity will be highest.
-  return data[['track_name', 'artist_name']][2:7]
+  return data[['track_name', 'artist_name', 'genre']][2:7].values.tolist()
 
-def recommend_new_user(genres, data):
+def recommend_new_user(genres, songs_data):
   '''
   Рекомендации для новых пользователей (на основе жанров)
   '''
-  # TODO
+  data = songs_data.copy()
+  data = data[data['genre'].isin(genres)]
+  return data[['track_name', 'artist_name', 'genre']][:7].values.tolist()
