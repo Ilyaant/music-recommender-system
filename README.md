@@ -9,6 +9,15 @@
 
 ![image](https://github.com/user-attachments/assets/86ae143c-566c-4759-89e3-45ebdb92da41)
 
+Основное окно пользователя (рекомендации):
+![image](https://github.com/user-attachments/assets/0163d57c-4532-4c2a-84cc-c5973ee1c359)
+
+Основное окно пользователя (магазин):
+![image](https://github.com/user-attachments/assets/050766f8-b9fc-482f-887f-0f863828be36)
+
+Основное окно пользователя (магазин):
+
+
 ## Использованные технологии
 TODO
 ## Инструкция по установке
