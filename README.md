@@ -32,13 +32,17 @@ git clone https://github.com/Ilyaant/music-recommender-system.git
 ```
 python -m venv .
 ```
+Активировать виртуальное окружение:
+```
+Scripts\activate
+```
 Установить требуемые библиотеки:
 ```
 pip install -r requirements.txt
 ```
 Запустить приложение:
 ```
-TODO
+python app.py
 ```
 ## Файлы приложения
 * В папке `data` находится датасет с песнями
