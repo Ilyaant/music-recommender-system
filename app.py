@@ -94,8 +94,22 @@ def user_interface(user):
         if event == sg.WINDOW_CLOSED or event == 'Выход':
             break
 
-        if event in ['-SHTABLE-', '-RECTABLE-']:
+        if event == '-SHTABLE-':
             data_selected = [all_songs[row] for row in values[event]]
+            print(data_selected)
+            user_songs_arr = user['songs']
+            user_songs_arr.append({
+                'track_name': data_selected[0][0],
+                'artist_name': data_selected[0][1],
+                'genre': data_selected[0][2]
+            })
+            User = Query()
+            database.update({'songs': user_songs_arr}, User.login == user['login'])
+            sg.Popup('Песня успешно добавлена', title='Успешно')
+
+        if event == '-RECTABLE-':
+            rec_arr = window[event].values
+            data_selected = [rec_arr[row] for row in values[event]]
             print(data_selected)
             user_songs_arr = user['songs']
             user_songs_arr.append({

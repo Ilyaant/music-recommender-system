@@ -11,8 +11,12 @@ def get_similarities(song_name, data):
   song_vectorizer = CountVectorizer()
   song_vectorizer.fit(data['genre'])
 
+  song_vectorizer2 = CountVectorizer()
+  song_vectorizer2.fit(data['topic'])
+
   # Getting vector for the input song.
-  text_array1 = song_vectorizer[0].transform(data[data['track_name']==song_name]['genre']).toarray()
+  text_array1 = song_vectorizer.transform(data[data['track_name']==song_name]['genre']).toarray()
+  text_array11 = song_vectorizer2.transform(data[data['track_name']==song_name]['topic']).toarray()
   num_array1 = data[data['track_name']==song_name].select_dtypes(include=np.number).to_numpy()
    
   # We will store similarity for each row of the dataset.
@@ -22,12 +26,14 @@ def get_similarities(song_name, data):
      
     # Getting vector for current song.
     text_array2 = song_vectorizer.transform(data[data['track_name']==name]['genre']).toarray()
+    text_array22 = song_vectorizer2.transform(data[data['track_name']==song_name]['topic']).toarray()
     num_array2 = data[data['track_name']==name].select_dtypes(include=np.number).to_numpy()
  
     # Calculating similarities for text as well as numeric features
     text_sim = cosine_similarity(text_array1, text_array2)[0][0]
+    text_sim2 = cosine_similarity(text_array11, text_array22)[0][0]
     num_sim = cosine_similarity(num_array1, num_array2)[0][0]
-    sim.append(text_sim + num_sim)
+    sim.append(text_sim + text_sim2 + num_sim)
      
   return sim
 
